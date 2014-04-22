@@ -2,7 +2,33 @@ window.onload = function() {
 var dice = document.getElementById('dice');
 var dice2 = document.getElementById('dice2');
 var value = 0;
+var playerWins = 0;
+var compWins = 0;
 var text = document.getElementById('text');
+var playerScore = document.getElementById('player');
+var compScore = document.getElementById('computer');
+var roll = document.getElementById('play');
+
+roll.addEventListener('click', function() {
+		compRoll();
+		rollDice();
+		if (value == value2) {
+			text.innerHTML = 'you tied'
+		}
+		else if (value > value2) {
+			text.innerHTML = 'you won!'
+			playerWins++;
+			playerScore.innerHTML = 'Player: ' + playerWins;
+
+
+		}
+		else {
+			text.innerHTML = 'you lose'
+			compWins++;
+			compScore.innerHTML = 'Computer: ' + compWins;
+		}
+	})
+
 var rollDice = function () {
 	value = Math.round(Math.random()*5 + 1);
 	switch (value) {
@@ -27,7 +53,6 @@ var rollDice = function () {
 		}
 		return value;
 	}
-	rollDice();
 
 var compRoll = function() {
 
@@ -53,19 +78,5 @@ var compRoll = function() {
 			break;
 		}
 		return value2;
-
-}
-
-	compRoll();
-	console.log(value);
-	console.log(value2);
-	if (value == value2) {
-		text.innerHTML = 'you tied'
-	}
-	else if (value > value2) {
-		text.innerHTML = 'you won!'
-	}
-	else {
-		text.innerHTML = 'you lose'
 	}
 };
